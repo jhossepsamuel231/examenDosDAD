@@ -1,0 +1,66 @@
+type Mutation{
+    guardarAutor(autor:autor):Autor,
+    actualizarAutor(idAutor:Int, autor:autor):Autor,
+    eliminarAutor(idAutor:Int) : Int,
+    guardarEditorial(editorial:editorial):Editorial,
+    actualizarEditorial(idEditorial:Int, editorial:editorial):Editorial,
+    eliminarEditorial(idEditorial:Int) : Int,
+    guardarLibro(libroRequest:libroRequest):Libro,
+    actualizarLibro(id:Int, libroRequest:libroRequest):Libro,
+    eliminarLibro(id : Int) : Int,
+}
+
+type Query{
+    listarAutores : [Autor],
+    listarAutorPorId(id:Int): Autor,
+    listarEditorial : [Editorial],
+    listarEditorialPorId(id:Int): Editorial,
+    listarLibro : [Libro],
+    listarLibroPorId(id:Int): Libro
+}
+
+type Libro{
+    idLibro: Int,
+    tituloLibro: String,
+    descripcionLibro: String,
+    paginasLibro: Int,
+    edicionLibro: String,
+    autor: Autor,
+    editorial: Editorial
+}
+
+type Editorial{
+    idEditorial: Int,
+    nombreEditorial: String,
+    paisEditorial: String,
+    libros: [Libro]
+}
+
+type Autor{
+    idAutor: Int,
+    nombreAutor: String,
+    apellidosAutor: String,
+    paisAutor: String,
+    libros: [Libro]
+}
+
+input autor{
+    nombreAutor: String,
+    apellidosAutor: String,
+    paisAutor: String
+}
+
+input editorial{
+    nombreEditorial: String,
+    paisEditorial: String
+}
+
+input libroRequest{
+    tituloLibro: String,
+    descripcionLibro: String,
+    paginasLibro: Int,
+    edicionLibro: String,
+    autorId: Int,
+    editorialId: Int
+}
+
